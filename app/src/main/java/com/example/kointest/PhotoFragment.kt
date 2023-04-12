@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.util.Log.e
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kointest.databinding.FragmentPhotoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PhotoFragment : Fragment(R.layout.fragment_photo) {
     lateinit var binding : FragmentPhotoBinding
-    val viewModel: PhotoViewModel by viewModels()
+    val viewModel: PhotoViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DataBindingUtil.bind(view)!!
@@ -21,9 +25,8 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
 
         viewModel.getPhotoList()
         viewModel.photoList.observe(viewLifecycleOwner){
-
-            e("TAG", "onViewCreated: $it")
-            val adaptor = PhotoAdapter(it.photos.photo)
+            val adaptor = PagingAdaptor()
+            adaptor.submitList(it.photos.photo)
             recyclerView.adapter = adaptor
         }
 

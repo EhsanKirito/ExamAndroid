@@ -1,6 +1,6 @@
 package com.example.kointest.Network
 
-data class Photo(
+data class Photox(
     val farm: Int,
     val height_s: Int,
     val id: String,
