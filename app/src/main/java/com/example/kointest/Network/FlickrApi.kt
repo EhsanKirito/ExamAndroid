@@ -6,13 +6,25 @@ import retrofit2.http.Query
 
 interface FlickrApi {
     @GET("/services/rest/")
-    fun getPopularPhotos(
+    suspend fun getPopularPhotos(
         @Query("method") method: String = "flickr.photos.getPopular",
         @Query("user_id") userId: String = "34427466731@N01",
         @Query("extras") extras: String = "url_s",
         @Query("format") format: String = "json",
         @Query("nojsoncallback") noJsonCallback: Int = 1,
-        @Query("per_page") perPage: Int = 10,
+        @Query("per_page") perPage: Int ,
         @Query("api_key") apiKey: String
-    ): Call<FlickrPhoto>
+    ): FlickrPhoto
+
+    @GET("/services/rest/")
+    suspend fun searchPopularPhotos(
+        @Query("method") method: String = "flickr.photos.search",
+        @Query("text") text: String,
+        @Query("user_id") userId: String = "34427466731@N01",
+        @Query("extras") extras: String = "url_s",
+        @Query("format") format: String = "json",
+        @Query("nojsoncallback") noJsonCallback: Int = 1,
+        @Query("per_page") perPage: Int ,
+        @Query("api_key") apiKey: String
+    ):FlickrPhoto
 }

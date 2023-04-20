@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kointest.Network.Photox
 
-class PagingAdaptor():ListAdapter<Photox, PagingAdaptor.PagingViewHolder>(ToDoCallBack()){
+class FlickrAdaptor:ListAdapter<Photox, FlickrAdaptor.PagingViewHolder>(ToDoCallBack()){
     class PagingViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
     }
@@ -22,7 +22,16 @@ class PagingAdaptor():ListAdapter<Photox, PagingAdaptor.PagingViewHolder>(ToDoCa
 
     override fun onBindViewHolder(holder: PagingViewHolder, position: Int) {
         val item:Photox = getItem(position)
+        //Glide
         Glide.with(holder.itemView.context).load(item.url_s).into(holder.imageView)
+        //Picasso
+//        Picasso.get().load(item.url_s).into(holder.imageView)
+        //Coil
+//        val request = ImageRequest.Builder(holder.itemView.context)
+//            .data(item.url_s)
+//            .target(holder.imageView)
+//            .build()
+//        Coil.imageLoader(holder.itemView.context).enqueue(request)
     }
 
 }
