@@ -18,7 +18,6 @@ class NetworkParams {
         fun getPopularOptions(page:Int): Map<String, String> {
             val popularOptions = HashMap<String, String>()
             popularOptions.putAll(getBaseOptions())
-            val page = popularOptions["page"] + page
             popularOptions["page"] = page.toString()
             return popularOptions
         }

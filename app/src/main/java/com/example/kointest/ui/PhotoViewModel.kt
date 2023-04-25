@@ -15,8 +15,6 @@ import javax.inject.Inject
 class PhotoViewModel @Inject constructor(private val repository: RemoteDataSource) : ViewModel() {
     private val _movieList = MutableLiveData<MovieResponse>()
     val movieList: LiveData<MovieResponse> = _movieList
-    private val _searchList = MutableLiveData<MovieResponse>()
-    val searchList: LiveData<MovieResponse> = _searchList
     var page:Int = 1
 
     fun getMovieList() {

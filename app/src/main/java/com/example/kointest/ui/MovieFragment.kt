@@ -41,6 +41,7 @@ class MovieFragment: Fragment(R.layout.fragment_movie) {
                 if (lastPosition == adapter.itemCount - 1) {
                     viewModel.nexPage()
                 }
+                recyclerView.scrollTo(1,1)
             }
         })
     }
