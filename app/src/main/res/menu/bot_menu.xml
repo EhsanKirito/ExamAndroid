@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/photoFragment"
-        android:title="Show Photo" />
+        android:id="@+id/movieFragment"
+        android:title="Show Movie" />
     <item
-        android:id="@+id/searchFragment"
-        android:title="Search Photo" />
+        android:id="@+id/favoriteMovieFragment"
+        android:title="Favorite Movies" />
 </menu>

@@ -7,16 +7,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kointest.FlickrAdaptor
+import com.example.kointest.MovieAdaptor
 import com.example.kointest.R
-import com.example.kointest.databinding.FragmentPhotoBinding
+import com.example.kointest.databinding.FragmentMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PhotoFragment : Fragment(R.layout.fragment_photo) {
-    lateinit var binding: FragmentPhotoBinding
+class MovieFragment: Fragment(R.layout.fragment_movie) {
+    lateinit var binding: FragmentMovieBinding
     val viewModel: PhotoViewModel by activityViewModels()
-    lateinit var adapter: FlickrAdaptor
+    lateinit var adapter: MovieAdaptor
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DataBindingUtil.bind(view)!!
@@ -24,10 +24,10 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 
-        viewModel.getPhotoList()
-        viewModel.photoList.observe(viewLifecycleOwner) {
-            adapter = FlickrAdaptor()
-            adapter.submitList(it.photos.photo)
+        viewModel.getMovieList()
+        viewModel.movieList.observe(viewLifecycleOwner) {
+            adapter = MovieAdaptor()
+            adapter.submitList(it.results)
             recyclerView.adapter = adapter
         }
         setScrollForNextPage()
